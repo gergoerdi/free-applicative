@@ -36,7 +36,7 @@ analyze visit = walk
         App af ax -> mappend <$> walk af <*> walk ax
         Effect eff -> visit eff
 
-eval :: forall f eff arr a₀ b₀. (Functor eff, Applicative f) => (forall a b. eff a -> f a) -> Free eff a₀ -> f a₀
+eval :: forall f eff arr a₀. (Functor eff, Applicative f) => (forall a. eff a -> f a) -> Free eff a₀ -> f a₀
 eval exec = go
   where
     go :: forall a. Free eff a -> f a
